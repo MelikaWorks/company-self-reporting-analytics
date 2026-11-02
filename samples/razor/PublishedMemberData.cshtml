@@ -1,0 +1,40 @@
+@* Selected data-selection excerpt from Views/Home/View.cshtml.
+   Surrounding model/session setup and rendering are omitted.
+   Shows customer and publication filters for documents, finances, and social links. *@
+@{
+var Doc = (from m in doc
+           join e1 in Pdoc on m.Doc_ID equals e1.Doc_ID
+           where e1.Cust_ID == idCust && e1.CustDoc_Pub == true
+           select new
+           {
+               e1.Doc_ID,
+               m.Doc_Title,
+               m.Doc_Defult
+           }).ToList();
+var Fin = (from m in fin
+           join e1 in Pfin on m.FinData_ID equals e1.FinData_ID
+           where e1.Cust_ID == idCust && e1.CustFin_Pub == true
+           select new
+           {
+               e1.CustFin_ID,
+               m.FinData_Title,
+               e1.CustFin_Cost
+           }).ToList();
+
+var Soc = (from m in CallPage
+           join e1 in cust on m.Cust_ID equals e1.Cust_ID
+           join e2 in soc on m.Cust_ID equals e2.Cust_ID
+           where e1.Cust_ID == idCust && e2.Cust_ID == idCust && e2.SocialMedia_Pub == true
+           select new
+           {
+               ID = e1.Cust_ID,
+               SocNameEn = e2.SocialMedia_NameEn,
+               SocNameFa = e2.SocialMedia_NameFa,
+               SocLink = e2.SocialMedia_Link,
+               SocPub = e2.SocialMedia_Pub,
+               SocIcon = e2.SocialMedia_Icon,
+               SocDesc = e2.SocialMedia_Desc,
+               FontId = e2.Font_ID
+           }).ToList();
+
+}

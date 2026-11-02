@@ -1,0 +1,4 @@
+# Count curated source excerpts in language statistics using their real languages.
+# Sample paths can otherwise be excluded as documentation or vendored examples.
+samples/**/*.cs linguist-documentation=false linguist-vendored=false linguist-detectable=true
+samples/**/*.cshtml linguist-documentation=false linguist-vendored=false linguist-detectable=true

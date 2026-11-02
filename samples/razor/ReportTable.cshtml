@@ -1,0 +1,30 @@
+@* Selected presentation excerpt; requires the host application report model. *@
+@using System.Data
+
+<div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead style="background-color:#5A8DEE;color:white">
+                                <tr>
+                                    @foreach (DataColumn column in Model.Accounts.Columns)
+                                    {
+                                        <th>@column.Caption</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DataRow row in Model.Accounts.Rows)
+                                {
+                                    <tr>
+                                        @foreach (DataColumn column in Model.Accounts.Columns)
+                                        {
+                                            <td>
+                                                @(row.IsNull(column)
+                                                    ? ""
+                                                    : row[column].ToString())
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+</div>

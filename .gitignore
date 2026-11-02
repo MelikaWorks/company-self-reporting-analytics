@@ -1,0 +1,14 @@
+# Keep portfolio excerpts separate from the private application.
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+appsettings*.json
+.env*
+*.pfx
+*.bak
+*.mdf
+*.ldf
+*.zip
+*.rar

@@ -1,0 +1,26 @@
+@* Selected document branch inside the one-column Page Builder renderer.
+   Requires t, item, and the published Doc query from the surrounding view.
+   The original numeric-token/Html.Raw rendering is preserved; it is not a hardened HTML sanitization example. *@
+else if (t.Contains("2"))
+{
+    <div class="box-header with-border">
+        <h4 class="box-title">داده ها </h4>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            @{
+                if (Doc.Count() > 0)
+                {
+                    foreach (var d in Doc)
+                    {
+                        <span>
+                            @Html.Raw(WebUtility.HtmlDecode(item.PagBC_C1).Replace("2", d.Doc_Title))
+                        </span>
+                        <span> @Html.Raw(WebUtility.HtmlDecode(item.PagBC_C1).Replace("2", @d.Doc_Defult)) </span>
+                    }
+                }
+                else { }
+            }
+        </div>
+    </div>
+}
